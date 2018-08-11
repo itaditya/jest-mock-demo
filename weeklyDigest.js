@@ -1,7 +1,12 @@
 const moment = require('moment');
 
-module.exports = () => {
+const markdownBody = require('./markdownBody');
+
+module.exports = async () => {
   let headDateObject = moment('2016-02-01T00:00:00-06:00').toObject();
-  console.log(headDateObject);
-  return headDateObject.years;
+  const body = await markdownBody();
+  return {
+    year: headDateObject.years,
+    body: body
+  }
 }
